@@ -1,0 +1,5 @@
+flask-sqlalchemy
+flask
+python-dotenv
+psycopg2
+pre-commit

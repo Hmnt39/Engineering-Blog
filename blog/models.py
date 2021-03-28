@@ -1,29 +1,29 @@
 """Data models."""
-from .mixins import TimestampMixin
-from . import db
+from apps.mixins import BaseMixin
+from apps import db
 
 
-class BlogSource(TimestampMixin, db.Model):
+class BlogSource(BaseMixin):
     """Data model for Blog Sources"""
 
     __tablename__ = "blog_source"
-    id = db.Column(db.Integer, primary_key=True)
+
     name = db.Column(db.String(32), index=True, unique=False, nullable=False)
     feed_link = db.Column(
         db.String(512), index=False, unique=False, nullable=False
     )
 
     def __repr__(self):
-        return "<Source - {}}>".format(self.name)
+        return f"Source - {self.name}"
 
 
-class BlogData(TimestampMixin, db.Model):
+class BlogData(BaseMixin):
     """Data model for Blog Data"""
 
     __tablename__ = "blog_data"
 
-    id = db.Column(db.Integer, primary_key=True)
-    source = db.Column(db.String(32), index=True, unique=False, nullable=False)
+    source_id = db.Column(db.Integer, db.ForeignKey("blog_source.id"))
+    source = db.relationship("BlogSource", backref="blog_source")
     title = db.Column(
         db.String(1024),
         index=False,
@@ -50,4 +50,4 @@ class BlogData(TimestampMixin, db.Model):
     )
 
     def __repr__(self):
-        return "<Blog {} - {}>".format(self.source, self.id)
+        return f"Blog {self.source} - {self.id}"

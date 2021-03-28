@@ -1,5 +1,5 @@
 """App entry point."""
-from blog import initialize_app
+from apps import initialize_app
 
 app = initialize_app()
 

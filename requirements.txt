@@ -1,4 +1,5 @@
 flask-sqlalchemy
+flask-migrate
 flask
 python-dotenv
 psycopg2

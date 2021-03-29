@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "695160d1-e83c-4729-bf02-93ae4b9c5a95",
+		"name": "Flask Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Sources",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/source/?page_size=20",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"source",
+						""
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "20"
+						},
+						{
+							"key": "ids",
+							"value": "[4, 5]",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sources Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/scrap/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"scrap",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Blogs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/blog/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"blog",
+						""
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "20",
+							"disabled": true
+						},
+						{
+							"key": "ids",
+							"value": "[4]",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Source",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test\",\n    \"link\": \"https://engineering.monday.com/feed/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/source/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"source",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Blog Detail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test\",\n    \"link\": \"https://engineering.monday.com/feed/\",\n    \"description\": \"Test Description\",\n    \"pubDate\":  \"24 Jan 2021 12:00:00\",\n    \"source\": \"Discord\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/blog/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"blog",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Source",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test Again\",\n    \"link\": \"https://engineering.monday.com/feed/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/source/17/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"source",
+						"17",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Blog",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test Check\",\n    \"link\": \"https://engineering.monday.com/feed/\",\n    \"pubDate\": \"2021-01-24 14:00:00\",\n    \"description\": \"Test description\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/blog/2/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"blog",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Source",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Monday\",\n    \"link\": \"https://engineering.monday.com/feed/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/source/17/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"source",
+						"17",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Blog",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Monday\",\n    \"link\": \"https://engineering.monday.com/feed/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/blog/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"blog",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

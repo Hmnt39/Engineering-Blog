@@ -1,5 +1,6 @@
 from flask import request, jsonify
 from flask.views import MethodView
+import json
 
 from apps.utils import is_url
 from apps.exceptions import (
@@ -10,6 +11,7 @@ from apps.exceptions import (
 
 from blog.models import BlogSource
 from blog.gateways import SourceGateway
+from blog.tasks import build_blog_list
 
 
 class SourceAPI(MethodView):
@@ -23,11 +25,19 @@ class SourceAPI(MethodView):
         page_size = int(request.args.get("page_size", 10))
         paginate = request.args.get("paginate", True)
         ids = request.args.get("ids", [])
-        return self.gateway.get_sources(
-            ids=ids,
-            page=page,
-            page_size=page_size,
-            paginate=paginate,
+        name = request.args.get("name", None)
+        try:
+            ids = json.loads(ids)
+        except:
+            ids = []
+        return jsonify(
+            self.gateway.get_sources(
+                ids=ids,
+                name=name,
+                page=page,
+                page_size=page_size,
+                paginate=paginate,
+            )
         )
 
     @serialize_exceptions
@@ -55,3 +65,13 @@ class SourceAPI(MethodView):
             name=name,
             link=link,
         )
+
+
+class ScrapperAPI(MethodView):
+    @serialize_exceptions
+    def get(self):
+
+        ## TODO : Fetch blogs of the sources and add to DB.
+        ## Add Threading to fetch mutiple source at an instant
+        # articles = build_blog_list()
+        return jsonify(True)

@@ -16,10 +16,22 @@ class SourceGateway(BaseGateway):
             "link": entity.feed_link,
         }
 
-    def get_sources(self, ids=[], page=1, page_size=10, paginate=False):
+    def filter_source(self, id=None, name=None):
+        sources = self.model.query
+        if id:
+            sources = sources.filter(self.model.id == id)
+        if name:
+            sources = sources.filter(self.model.name == name)
+        return sources.first()
+
+    def get_sources(
+        self, ids=[], name=None, page=1, page_size=10, paginate=False
+    ):
         sources = self.model.query
         if ids:
             sources = sources.filter(self.model.id.in_(ids))
+        if name:
+            sources = sources.filter(self.model.name == name)
         return self._paginate_queryset(
             data=sources, page=page, page_size=page_size, paginate=paginate
         )
